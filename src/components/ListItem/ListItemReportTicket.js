@@ -1,16 +1,12 @@
 // @flow
 import * as React from 'react';
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import { fonts } from 'utils/variables';
 import type { ReportTicket } from 'models/ReportTicket';
 
 const ReportTicketView = styled.View`
   margin-bottom: 10px;
-  borderWidth: 1;
-  borderColor: #ddd
-  height: 20px;
-  elevation: 4;
-  padding: 15px;
-  width: 100%;
 `;
 
 type Props = {
@@ -20,7 +16,9 @@ type Props = {
 const ListItemReportTicket = (props: Props) => {
   const { item } = props;
   return (
-    <ReportTicketView />
+    <ReportTicketView>
+      <Text>test </Text>
+    </ReportTicketView>
   );
 };
 

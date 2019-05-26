@@ -22,11 +22,17 @@ import {
   SETTINGS,
   SUBMIT,
 } from 'constants/navigationConstants';
+import { fonts } from 'utils/variables';
+import i18n from 'services/i18n';
 
 const getTabNavigationOptions = (title: string, icon: string) => {
   return {
     defaultNavigationOptions: {
       title,
+      headerTitleStyle: {
+        fontWeight: null, // fix
+        fontFamily: fonts.primary.bold,
+      },
     },
     navigationOptions: {
       title,
@@ -37,19 +43,19 @@ const getTabNavigationOptions = (title: string, icon: string) => {
 
 const FeedFlow = createStackNavigator({
   [FEED]: FeedScreen,
-}, getTabNavigationOptions('Reports', 'layers'));
+}, getTabNavigationOptions(i18n.t('navigation.titles.reports'), 'layers'));
 
 const SubmitFlow = createStackNavigator({
   [SUBMIT]: SubmitScreen,
-}, getTabNavigationOptions('Submit', 'flag'));
+}, getTabNavigationOptions(i18n.t('navigation.titles.submit'), 'flag'));
 
 const MapFlow = createStackNavigator({
   [MAP]: MapScreen,
-}, getTabNavigationOptions('Map', 'map'));
+}, getTabNavigationOptions(i18n.t('navigation.titles.map'), 'map'));
 
 const SettingsFlow = createStackNavigator({
   [SETTINGS]: SettingsScreen,
-}, getTabNavigationOptions('Settings', 'settings'));
+}, getTabNavigationOptions(i18n.t('navigation.titles.settings'), 'settings'));
 
 const TabsFlow = createBottomTabNavigator({
   [TAB_FEED]: FeedFlow,

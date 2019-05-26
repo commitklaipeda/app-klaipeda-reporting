@@ -1,0 +1,10 @@
+{
+  "navigation": {
+    "titles": {
+      "reports": "Reports",
+      "submit": "Submit",
+      "map": "Map",
+      "settings": "Settings",
+    }
+  }
+}
