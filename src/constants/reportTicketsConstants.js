@@ -1,0 +1,3 @@
+// @flow
+export const ADD_REPORT_TICKET = 'ADD_REPORT_TICKET';
+export const SET_REPORT_TICKETS = 'SET_REPORT_TICKETS';

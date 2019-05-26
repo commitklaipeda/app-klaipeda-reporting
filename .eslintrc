@@ -1,0 +1,36 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "plugin:promise/recommended",
+    "plugin:import/recommended",
+    "plugin:react-native/all",
+    "plugin:jest/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "react-native",
+    "flowtype",
+    "import",
+    "jest",
+    "promise"
+  ],
+  "env": {
+    "es6": true,
+    "react-native/react-native": true
+  },
+  "rules": {
+    "quotes": ["error", "single"],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}]
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {},
+      "node": {
+        "paths": ["./src", "./node_modules"]
+      }
+    }
+  }
+}
