@@ -1,10 +1,10 @@
 // @flow
-const host = 'https://jsonplaceholder.typicode.com';
+const host = 'https://api.myjson.com/';
 
 const ApiService = {
-  fetchReportTickets: async () => fetch(`${host}/comments`)
+  fetchReportTickets: async () => fetch(`${host}/bins/qw394`)
     .then(response => response.json())
-    .then(list => list.slice(0, 5)),
+    .then(list => list.slice(0, 10)),
 };
 
 export default ApiService;

@@ -1,30 +1,42 @@
 // @flow
 export const colors = {
-  primary: '#F8C408',
-  secondary: '#ffffff',
-  darkRed: '#DC332C',
-  black: '#000000',
+  blue: '#0082FF',
+  black: '#1C1C2B',
+  white: '#ffffff',
+  lightGrey: '#F1F1F1',
+  grey: '#999999',
+  darkGrey: '#787878',
+  transparent: 'transparent',
 };
 
 export const dimensions = {
-  padding: {
-    content: 20,
+  spacing: {
+    content: 10,
+    cardVertical: 5,
+    cardHorizontal: 10,
+    navHeaderTop: 3,
+    navHeaderBottom: 0,
+    navHeaderButtonBottomAdjust: 6,
+    listSectionHeaderHorizontal: 20,
+    listSectionHeaderVertical: 10,
+  },
+  height: {
+    navHeaderButton: 23,
   },
 };
 
 export const fontSizes = {
-  content: 15,
+  content: 16,
+  medium: 14,
+  small: 12,
+  tabBarLabel: 11,
+  tabBarCenterLabel: 12,
+  headerTitle: 23,
 };
 
 export const fonts = {
-  primary: {
-    light: 'Roboto-Light',
-    regular: 'Roboto-Regular',
-    bold: 'Roboto-Bold',
-  },
-  secondary: {
-    light: 'Montserrat-Light',
-    regular: 'Montserrat-Regular',
-    bold: 'Montserrat-Bold',
-  },
+  light: 'Montserrat-Light',
+  regular: 'Montserrat-Regular',
+  semiBold: 'Montserrat-SemiBold',
+  bold: 'Montserrat-Bold',
 };

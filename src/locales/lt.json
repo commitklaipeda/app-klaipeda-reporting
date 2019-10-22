@@ -1,10 +1,10 @@
 {
   "navigation": {
     "titles": {
-      "reports": "Reports",
-      "submit": "Submit",
-      "map": "Map",
-      "settings": "Settings",
+      "reports": "Pranešimai",
+      "submit": "Pranešti problemą",
+      "map": "Žemėlapis",
+      "settings": "Nustatymai",
     }
   }
 }

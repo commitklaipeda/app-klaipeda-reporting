@@ -23,7 +23,12 @@
   "rules": {
     "quotes": ["error", "single"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}]
+    "import/no-extraneous-dependencies": ["error", { "packageDir": "./"}],
+    "arrow-parens": ["off"],
+    "react/require-default-props": [0],
+    "operator-linebreak": ["error", "after"],
+    "react/jsx-wrap-multilines": ["error", { "logical": "ignore" }],
+    "no-confusing-arrow": ["off"]
   },
   "settings": {
     "import/resolver": {

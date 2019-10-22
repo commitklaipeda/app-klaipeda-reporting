@@ -1,9 +1,13 @@
 // @flow
 import { connect } from 'react-redux';
 import React, { PureComponent } from 'react';
-import { FlatList } from 'react-native';
+import { SectionList } from 'react-native';
 import ListItemReportTicket from 'components/ListItem/ListItemReportTicket';
+import ContentWrapper from 'components/Wrapper/ContentWrapper';
+import ListSectionHeader from 'components/ListSectionHeader';
+// import Button from 'components/Button';
 import { fetchReportTicketsAction } from 'actions/reportTicketsActions';
+
 import type { ReportTicket } from 'models/ReportTicket';
 
 type Props = {
@@ -12,6 +16,10 @@ type Props = {
 }
 
 class FeedScreen extends PureComponent<Props> {
+  static navigationOptions = {
+    // headerRight: <Button icon="entypo.funnel" />,
+  };
+
   componentDidMount() {
     const { fetchReportTickets } = this.props;
     fetchReportTickets();
@@ -19,12 +27,23 @@ class FeedScreen extends PureComponent<Props> {
 
   render() {
     const { reportTickets } = this.props;
+    const sectionedList = [{
+      title: 'Šiandien',
+      data: reportTickets,
+    }];
     return (
-      <FlatList
-        data={reportTickets}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <ListItemReportTicket item={item} />}
-      />
+      <ContentWrapper noSidePadding>
+        <SectionList
+          contentContainerStyle={{
+            paddingTop: 20,
+            paddingBottom: 50,
+          }}
+          sections={sectionedList}
+          keyExtractor={({ id }) => `item-${id}`}
+          renderItem={({ item }) => <ListItemReportTicket item={item} />}
+          renderSectionHeader={({ section }) => <ListSectionHeader title={section.title} />}
+        />
+      </ContentWrapper>
     );
   }
 }
