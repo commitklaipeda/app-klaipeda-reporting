@@ -2,46 +2,92 @@
 import { connect } from 'react-redux';
 import React, { PureComponent } from 'react';
 import { SectionList } from 'react-native';
-import ListItemReportTicket from 'components/ListItem/ListItemReportTicket';
-import ContentWrapper from 'components/Wrapper/ContentWrapper';
-import ListSectionHeader from 'components/ListSectionHeader';
-// import Button from 'components/Button';
-import { fetchReportTicketsAction } from 'actions/reportTicketsActions';
+import type { NavigationScreenProp } from 'react-navigation';
+import moment from 'moment';
 
-import type { ReportTicket } from 'models/ReportTicket';
+// actions
+import { fetchReportItemsAction } from 'actions/reportItemsActions';
+
+// components
+import ListItem from 'components/ListItem';
+import ContentWrapper from 'components/ContentWrapper';
+import ListSectionHeader from 'components/ListSectionHeader';
+
+// constants
+import { REPORT_DETAILS } from 'constants/navigationConstants';
+
+// models
+import type { ReportItem } from 'models/Report';
 
 type Props = {
-  reportTickets: ReportTicket[],
-  fetchReportTickets: Function,
+  reportItems: ReportItem[],
+  fetchReportItems: Function,
+  isFetchingReportItems: boolean,
+  navigation: NavigationScreenProp,
 }
 
-class FeedScreen extends PureComponent<Props> {
-  static navigationOptions = {
-    // headerRight: <Button icon="entypo.funnel" />,
-  };
+const today = moment();
 
+const getDateSectionTitle = (timestamp) => {
+  if (moment(timestamp).isSame(today, 'day')) return 'Šiandien';
+  return 'Ankstesni';
+};
+
+class FeedScreen extends PureComponent<Props> {
   componentDidMount() {
-    const { fetchReportTickets } = this.props;
-    fetchReportTickets();
+    const { fetchReportItems } = this.props;
+    fetchReportItems();
   }
 
-  render() {
-    const { reportTickets } = this.props;
-    const sectionedList = [{
-      title: 'Šiandien',
-      data: reportTickets,
-    }];
+  renderListItem = ({ item }: ReportItem) => {
+    const { navigation } = this.props;
+    const { title, content, thumbnail } = item;
     return (
-      <ContentWrapper noSidePadding>
+      <ListItem
+        title={title}
+        content={content}
+        image={thumbnail}
+        onPress={() => navigation.navigate(REPORT_DETAILS, { item })}
+      />
+    );
+  };
+
+  renderSectionHeader = ({ section: { title } }) => <ListSectionHeader title={title} />;
+
+  render() {
+    const {
+      reportItems,
+      fetchReportItems,
+      isFetchingReportItems,
+    } = this.props;
+    const sectionedReportedItems = reportItems
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .reduce((list, report) => {
+        const { createdAt } = report;
+        const title = getDateSectionTitle(createdAt * 1000);
+        if (!(list[title])) {
+          list[title] = {
+            title,
+            data: [report],
+          };
+        } else {
+          list[title] = {
+            ...list[title],
+            data: [...list[title].data, report],
+          };
+        }
+        return list;
+      }, {});
+    const sectionedList = Object.values(sectionedReportedItems);
+    return (
+      <ContentWrapper>
         <SectionList
-          contentContainerStyle={{
-            paddingTop: 20,
-            paddingBottom: 50,
-          }}
           sections={sectionedList}
           keyExtractor={({ id }) => `item-${id}`}
-          renderItem={({ item }) => <ListItemReportTicket item={item} />}
-          renderSectionHeader={({ section }) => <ListSectionHeader title={section.title} />}
+          renderItem={this.renderListItem}
+          renderSectionHeader={this.renderSectionHeader}
+          refreshing={isFetchingReportItems}
+          onRefresh={() => fetchReportItems()}
         />
       </ContentWrapper>
     );
@@ -49,12 +95,16 @@ class FeedScreen extends PureComponent<Props> {
 }
 
 const mapStateToProps = ({
-  reportTickets: { data: reportTickets },
+  reportItems: {
+    data: reportItems,
+    isFetching: isFetchingReportItems,
+  },
 }) => ({
-  reportTickets,
+  reportItems,
+  isFetchingReportItems,
 });
 const mapDispatchToProps = dispatch => ({
-  fetchReportTickets: () => dispatch(fetchReportTicketsAction()),
+  fetchReportItems: () => dispatch(fetchReportItemsAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FeedScreen);

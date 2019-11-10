@@ -28,7 +28,10 @@
     "react/require-default-props": [0],
     "operator-linebreak": ["error", "after"],
     "react/jsx-wrap-multilines": ["error", { "logical": "ignore" }],
-    "no-confusing-arrow": ["off"]
+    "no-confusing-arrow": ["off"],
+    "react-native/no-inline-styles": ["off"],
+    "no-param-reassign": ["off"],
+    "import/prefer-default-export": ["off"]
   },
   "settings": {
     "import/resolver": {

@@ -2,6 +2,7 @@
 export const colors = {
   blue: '#0082FF',
   black: '#1C1C2B',
+  realBlack: '#000',
   white: '#ffffff',
   lightGrey: '#F1F1F1',
   grey: '#999999',
@@ -12,6 +13,7 @@ export const colors = {
 export const dimensions = {
   spacing: {
     content: 10,
+    contentBottom: 30,
     cardVertical: 5,
     cardHorizontal: 10,
     navHeaderTop: 3,
@@ -31,7 +33,7 @@ export const fontSizes = {
   small: 12,
   tabBarLabel: 11,
   tabBarCenterLabel: 12,
-  headerTitle: 23,
+  heading: 23,
 };
 
 export const fonts = {

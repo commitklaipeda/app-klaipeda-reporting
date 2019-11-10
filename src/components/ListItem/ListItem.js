@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import {
   colors,
@@ -9,67 +9,65 @@ import {
   fontSizes,
 } from 'utils/variables';
 
-import type { ReportTicket } from 'models/ReportTicket';
-
 type Props = {
-  item: ReportTicket,
+  title: string,
+  content: string,
+  image: string,
+  onPress: Function,
 }
 
-const ReportTicketWrapper = styled.View`
+const ListItemWrapper = styled(TouchableOpacity)`
   margin-bottom: ${dimensions.spacing.cardVertical}px;
   padding-top: ${dimensions.spacing.cardVertical}px;
   padding-bottom: ${dimensions.spacing.cardVertical}px;
-  padding-left: ${dimensions.spacing.cardHorizontal}px;
-  padding-right: ${dimensions.spacing.cardHorizontal}px;
   flex-direction: row;
 `;
 
-const ReportImage = styled.Image`
+const ItemImage = styled.Image`
   height: 80px;
   width: 80px;
   border-radius: 40px;
   margin-right: ${dimensions.spacing.cardHorizontal}px;
 `;
 
-const ReportTitle = styled.Text`
+const ItemTitle = styled.Text`
   font-family: ${fonts.semiBold};
   font-size: ${fontSizes.content};
   color: ${colors.black};
   margin-bottom: 7px;
 `;
 
-const ReportShortText = styled.Text`
+const ItemShortText = styled.Text`
   font-family: ${fonts.light};
   font-size: ${fontSizes.medium};
   color: ${colors.grey};
 `;
 
 
-const ReportTextWrapper = styled.View`
+const ItemTextWrapper = styled.View`
   flex: 1;
 `;
 
-const ListItemReportTicket = (props: Props) => {
+const ListItem = (props: Props) => {
   const {
-    item: {
-      title,
-      short,
-      image,
-    },
+    title,
+    content,
+    image,
+    onPress,
   } = props;
   return (
-    <ReportTicketWrapper>
-      <ReportImage
+    <ListItemWrapper onPress={onPress}>
+      <ItemImage
         resizeMode="cover"
         source={{ uri: image }}
       />
-      <ReportTextWrapper>
-        <ReportTitle>{title}</ReportTitle>
-        <ReportShortText>{short}</ReportShortText>
-      </ReportTextWrapper>
-    </ReportTicketWrapper>
+      <ItemTextWrapper>
+        <ItemTitle>{title}</ItemTitle>
+        <ItemShortText numberOfLines={2}>{content}</ItemShortText>
+      </ItemTextWrapper>
+    </ListItemWrapper>
 
   );
 };
 
-export default ListItemReportTicket;
+export default ListItem;

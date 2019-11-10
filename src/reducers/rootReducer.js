@@ -1,9 +1,9 @@
 // @flow
 import { combineReducers } from 'redux';
-import reportTicketsReducer from 'reducers/reportTicketsReducer';
+import reportItemsReducer from 'reducers/reportItemsReducer';
 
 const rootReducer = combineReducers({
-  reportTickets: reportTicketsReducer,
+  reportItems: reportItemsReducer,
 });
 
 export default rootReducer;
