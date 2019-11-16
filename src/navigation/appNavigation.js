@@ -1,12 +1,9 @@
 // @flow
 import React from 'react';
-import { Platform, TouchableOpacity, View} from 'react-native';
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-  createSwitchNavigator,
-  createAppContainer,
-} from 'react-navigation';
+import { Platform } from 'react-native';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styled from 'styled-components';
 import FeedScreen from 'screens/Feed/FeedScreen';
 import SubmitScreen from 'screens/Submit/SubmitScreen';
@@ -26,10 +23,7 @@ import Icon from 'components/Icon';
 import { fonts, colors, dimensions, fontSizes } from 'utils/variables';
 import i18n from 'services/i18n';
 
-import type {
-  TabBarIconProps,
-} from 'react-navigation';
-import { screenWithTopImageNavigationParams } from '../utils/navigation';
+import type { TabBarIconProps } from 'react-navigation';
 
 const TabBarLabel = styled.Text`
   text-align: center;

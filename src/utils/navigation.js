@@ -24,3 +24,22 @@ export const screenWithTransparentHeaderNavigationParams = (
   ),
   ...additional,
 });
+
+export const screenWithRightDismissNavigationParams = (
+  { navigation },
+  additional?: Object = {},
+) => ({
+  headerRightContainerStyle: {
+    paddingRight: dimensions.spacing.content,
+  },
+  headerRight: (
+    <TouchableOpacity onPress={() => navigation.goBack(null)}>
+      <Icon
+        name="ad.close"
+        size={30}
+        color={colors.black}
+      />
+    </TouchableOpacity>
+  ),
+  ...additional,
+});

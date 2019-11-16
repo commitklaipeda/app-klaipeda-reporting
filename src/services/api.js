@@ -5,6 +5,10 @@ const ApiService = {
   fetchReportItems: async () => fetch(`${host}/bins/169tiq`)
     .then(response => response.json())
     .then(list => list.slice(0, 10)),
+
+  submitReport: async () => fetch(`${host}/bins/169tiq`)
+    .then(response => response.json())
+    .then(list => list.slice(0, 10)),
 };
 
 export default ApiService;

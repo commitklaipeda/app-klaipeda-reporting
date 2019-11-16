@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-navigation';
 import { colors, dimensions } from 'utils/variables';
 
 const ContentWrapper = styled(SafeAreaView)`
-  background: ${colors.white};
+  background: ${({ backgroundColor }) => backgroundColor || colors.white};
   flex: 1;
   ${({ noPadding }) => !noPadding && `
     padding-left: ${dimensions.spacing.content}px;

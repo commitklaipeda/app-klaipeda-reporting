@@ -5,8 +5,11 @@ export const colors = {
   realBlack: '#000',
   white: '#ffffff',
   lightGrey: '#F1F1F1',
+  mediumGrey: '#E5E5E5',
+  creamGrey: '#FDF8F8',
   grey: '#999999',
   darkGrey: '#787878',
+  red: '#ff0000',
   transparent: 'transparent',
 };
 
@@ -21,9 +24,13 @@ export const dimensions = {
     navHeaderButtonBottomAdjust: 6,
     listSectionHeaderHorizontal: 20,
     listSectionHeaderVertical: 10,
+    inputHorizontal: 20,
+    inputVertical: 18,
   },
   height: {
     navHeaderButton: 23,
+    textInputLarge: 140,
+    textInputRegular: 55,
   },
 };
 
