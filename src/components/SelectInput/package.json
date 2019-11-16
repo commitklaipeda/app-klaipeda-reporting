@@ -1,0 +1,6 @@
+{
+  "name": "SelectInput",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./SelectInput.js"
+}

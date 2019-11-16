@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, TouchableOpacity } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -22,8 +22,6 @@ import {
 import Icon from 'components/Icon';
 import { fonts, colors, dimensions, fontSizes } from 'utils/variables';
 import i18n from 'services/i18n';
-
-import type { TabBarIconProps } from 'react-navigation';
 
 const TabBarLabel = styled.Text`
   text-align: center;
@@ -62,6 +60,7 @@ const getTabNavigationOptions = (
       shadowColor: colors.transparent,
       borderBottomColor: colors.transparent,
       elevation: 0,
+      paddingBottom: 20,
     },
     headerTintColor: colors.black,
     headerTitleStyle: {
@@ -108,12 +107,15 @@ const getTabNavigationOptions = (
           marginTop: 0,
         },
       },
-      tabBarIcon: ({ tintColor, focused }: TabBarIconProps) => {
+      tabBarButtonComponent: (props) => <TouchableOpacity {...props} />,
+      tabBarIcon: (tabBarIconProps) => {
+        const { tintColor, focused, tabBarOnPress } = tabBarIconProps;
         const iconColor = isCenterButton ? colors.white : tintColor;
         const iconSize = isCenterButton ? 35 : 15;
         const iconName = (focused && focusedIcon) || icon;
         return (
           <IconWrapper
+            onPress={tabBarOnPress}
             isCenterButton={isCenterButton}
             style={isCenterButton && {
               shadowColor: colors.realBlack,

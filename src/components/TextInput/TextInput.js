@@ -19,7 +19,6 @@ const StyledTextInput = styled(TextInput)`
   font-family: ${fonts.light};
   font-size: ${fontSizes.content}
   color: ${colors.black}
-  margin-bottom: 9px;
   padding: ${dimensions.spacing.inputVertical}px ${dimensions.spacing.inputHorizontal}px;
   border-color: ${({ hasError }) => hasError ? colors.red : colors.mediumGrey};
   border-radius: 10px;
